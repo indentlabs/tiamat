@@ -1,0 +1,41 @@
+<!doctype html>
+<html ng-app="tiamat">
+  <head>
+    <title>Tiamat - World Generation by Indent Labs</title>
+
+    <script src="http://chancejs.com/chance.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+    <script src="app.js" type="text/javascript"></script>
+    <script src="maincontroller.js" type="text/javascript"></script>
+    <script src="settingscontroller.js" type="text/javascript"></script>
+    <script src="worldcontroller.js" type="text/javascript"></script>
+
+  </head>
+  <body>
+  	<div id="settings" ng-app="tiamat" ng-controller="SettingsController">
+  		<div ng-repeat="(setting, default) in generation_settings">
+  			{{ setting }}: <input type="text" ng-model="default" ng-value="default" />
+  			{{ default }}
+  		</div>
+  	</div>
+
+  	<div id="world" ng-controller="WorldController">
+	  	{{ world_name }}
+
+	  	<div class="filter-bar">
+	  		Find: <input type="text" ng-model="search_query" />
+	  	</div>
+
+	  	<div class="map">
+		  	<!-- draw world map here -->
+		  	<ul>
+			  	<li ng-repeat="(coordinates, data) in most_recent_map">
+			  		{{ coordinates }} --- {{ data }}
+			  	</li>
+		  	</ul>
+	  	</div>
+  	</div>
+  </body>
+</html>
