@@ -1,4 +1,4 @@
-<div id="settings" ng-controller="SettingsController">
+<div id="settings">
   <div ng-repeat="(setting, default) in generation_settings">
     {{ setting }}: <input type="text" ng-model="default" ng-value="default" />
     (using {{ default }})
