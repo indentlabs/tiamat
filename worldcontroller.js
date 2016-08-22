@@ -87,6 +87,9 @@ app.controller("WorldController", function($scope) {
         }
       }
     }
+
+    // Redraw map with new topography
+    $scope.most_recent_map = $scope.world_map_data();
   };
 
   // Generate an original world
