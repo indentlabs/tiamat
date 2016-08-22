@@ -1,16 +1,16 @@
 <div id="world" ng-controller="WorldController">
-	{{ world_name }}
+  {{ world_name }}
 
-	<div class="filter-bar">
-		Find: <input type="text" ng-model="search_query" />
-	</div>
+  <div class="filter-bar">
+    Find: <input type="text" ng-model="search_query" />
+  </div>
 
-	<div class="map">
-		<!-- draw world map here -->
-		<ul>
-			<li ng-repeat="(coordinates, data) in most_recent_map">
-				{{ coordinates }} --- {{ data }}
-			</li>
-		</ul>
-	</div>
+  <div class="map">
+    <!-- draw world map here -->
+    <ul>
+      <li ng-repeat="(coordinates, data) in most_recent_map">
+        {{ coordinates }} --- {{ data }}
+      </li>
+    </ul>
+  </div>
 </div>
