@@ -1,7 +1,6 @@
 app.controller("WorldController", function($scope) {
   console.log("Loaded world controller!");
 
-
   // Bounding box corner ordering
   var TOPLEFT     = 0,
       TOPRIGHT    = 1,
@@ -40,13 +39,13 @@ app.controller("WorldController", function($scope) {
     var world_data = [];
 
     var bounding_coordinates = $scope.drawable_coordinate_boundaries();
-    console.log(bounding_coordinates);
-    for (var x = bounding_coordinates[TOPLEFT].x; x < bounding_coordinates[BOTTOMRIGHT].x; x++) {
-      // For each *column* of the world's grid...
+    for (var y = bounding_coordinates[TOPLEFT].y; y < bounding_coordinates[BOTTOMRIGHT].y; y++) {
+      // For each *row* of the world's grid...
       world_data.push([]);
-      for (var y = bounding_coordinates[TOPLEFT].y; y < bounding_coordinates[BOTTOMRIGHT].y; y++) {
-        // For each *row* of of the world's grid...
-        world_data[x].push({
+
+      for (var x = bounding_coordinates[TOPLEFT].x; x < bounding_coordinates[BOTTOMRIGHT].x; x++) {
+        // For each *column* of this row in the world's grid...
+        world_data[y].push({
           units:      $scope.units_at_coordinate(x, y),
           topography: $scope.topography_at_coordinate(x, y)
         });
@@ -61,10 +60,39 @@ app.controller("WorldController", function($scope) {
   };
 
   $scope.topography_at_coordinate = function (x, y) {
-    // Right now, let's make everything grass everywhere
-    return [TOPOGRAPHY.GRASS];
+    // TODO: support multiple topographical features returned here
+    return $scope.world_map_topography[y][x];
   };
 
+  $scope.class_for_topography_id = function (tid) {
+    // TODO: reverse-lookup this, instead of switch case
+    switch (tid) {
+      case 0:  return 'grass';   break;
+      case 1:  return 'water';   break;
+      default: return 'unknown'; break;
+    }
+  };
+
+  $scope.generate_random_world_topography = function () {
+    $scope.world_map_topography = [];
+
+    var bounding_coordinates = $scope.drawable_coordinate_boundaries();
+    for (var y = bounding_coordinates[TOPLEFT].y; y < bounding_coordinates[BOTTOMRIGHT].y; y++) {
+      $scope.world_map_topography.push([]);
+      for (var x = bounding_coordinates[TOPLEFT].x; x < bounding_coordinates[BOTTOMRIGHT].x; x++) {
+        if (chance.bool({likelihood: 70})) {
+          $scope.world_map_topography[y][x] = TOPOGRAPHY.GRASS;
+        } else {
+          $scope.world_map_topography[y][x] = TOPOGRAPHY.WATER;
+        }
+      }
+    }
+  };
+
+  // Generate an original world
+  $scope.generate_random_world_topography();
+
+  // Fetch original world state to show before mutating forward
   $scope.most_recent_map = $scope.world_map_data();
   console.log($scope.most_recent_map);
 });
