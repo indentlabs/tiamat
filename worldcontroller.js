@@ -1,18 +1,24 @@
 app.controller("WorldController", function($scope) {
   console.log("Loaded world controller!");
 
+
   // Bounding box corner ordering
   var TOPLEFT     = 0,
       TOPRIGHT    = 1,
       BOTTOMRIGHT = 2,
       BOTTOMLEFT  = 3;
 
-  $scope.world_name = "World Name";
-  $scope.world_map_units = {};
-  $scope.world_map_geography = {};
+  // TODO: move these to some lower level file
+  var TOPOGRAPHY = {
+    GRASS: 0,
+    WATER: 1
+  };
+
+  $scope.world_name           = "World Name"; // TODO: autogenerate and/or config
+  $scope.world_map_units      = {};
   $scope.world_map_topography = {};
 
-  $scope.world_width = 10;
+  $scope.world_width  = 10;
   $scope.world_height = 10;
 
   // returns [top_left, top_right, bottom_right, bottom_left] coordinates for bounding box
@@ -42,7 +48,6 @@ app.controller("WorldController", function($scope) {
         // For each *row* of of the world's grid...
         world_data[x].push({
           units:      $scope.units_at_coordinate(x, y),
-          geography:  $scope.geography_at_coordinate(x, y),
           topography: $scope.topography_at_coordinate(x, y)
         });
       }
@@ -55,12 +60,9 @@ app.controller("WorldController", function($scope) {
     return [];
   };
 
-  $scope.geography_at_coordinate = function (x, y) {
-    return [];
-  };
-
   $scope.topography_at_coordinate = function (x, y) {
-    return [];
+    // Right now, let's make everything grass everywhere
+    return [TOPOGRAPHY.GRASS];
   };
 
   $scope.most_recent_map = $scope.world_map_data();
