@@ -1,11 +1,12 @@
 <!doctype html>
-<html ng-app="tiamat">
+<html>
   <head>
     <title>Tiamat - World Generation by Indent Labs</title>
 
     <script src="http://chancejs.com/chance.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
 
     <script src="app.js" type="text/javascript"></script>
     <script src="maincontroller.js" type="text/javascript"></script>
@@ -13,29 +14,18 @@
     <script src="worldcontroller.js" type="text/javascript"></script>
 
   </head>
-  <body>
-  	<div id="settings" ng-app="tiamat" ng-controller="SettingsController">
-  		<div ng-repeat="(setting, default) in generation_settings">
-  			{{ setting }}: <input type="text" ng-model="default" ng-value="default" />
-  			{{ default }}
-  		</div>
-  	</div>
+  <body ng-app="tiamat">
+  	<div id="content-container">
 
-  	<div id="world" ng-controller="WorldController">
-	  	{{ world_name }}
+		<h1><a ui-sref="welcome">Tiamat</a></h1>
+		<h2>Creator of worlds</h2>
 
-	  	<div class="filter-bar">
-	  		Find: <input type="text" ng-model="search_query" />
-	  	</div>
+		<ul>
+			<li><a ui-sref="settings">Customize Settings</a></li>
+			<li><a ui-sref="world">View world</a></li>
+		</ul>
 
-	  	<div class="map">
-		  	<!-- draw world map here -->
-		  	<ul>
-			  	<li ng-repeat="(coordinates, data) in most_recent_map">
-			  		{{ coordinates }} --- {{ data }}
-			  	</li>
-		  	</ul>
-	  	</div>
+  		<div ui-view></div>
   	</div>
   </body>
 </html>
