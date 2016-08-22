@@ -1,0 +1,22 @@
+{
+  "name": "tiamat",
+  "version": "1.0.0",
+  "description": "World generation & simulation",
+  "main": "app.js",
+  "dependencies": {
+    "enumify": "^1.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/indentlabs/tiamat.git"
+  },
+  "author": "Andrew Brown (drusepth)",
+  "bugs": {
+    "url": "https://github.com/indentlabs/tiamat/issues"
+  },
+  "homepage": "https://github.com/indentlabs/tiamat#readme"
+}
