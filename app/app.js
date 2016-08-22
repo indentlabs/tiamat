@@ -7,6 +7,7 @@ var angular_dependencies = [
 console.log('loading app.js');
 
 var app = angular.module('tiamat', angular_dependencies);
+
 require('./controllers/maincontroller.js');
 require('./controllers/settingscontroller.js');
 require('./controllers/worldcontroller.js');

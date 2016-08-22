@@ -13,7 +13,15 @@ module.exports = {
 		filename: 'app.bundle.js'
 	},
 	plugins: [
-		//new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js")
 		new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js', Infinity)
-	]
+	],
+	module: {
+		loaders: [
+		  // SASS
+		  {
+			test: /\.scss$/,
+			loader: 'style!css!sass'
+		  }
+		]
+	  }
 };

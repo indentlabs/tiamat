@@ -18,8 +18,8 @@ app.controller("WorldController", function($scope) {
   $scope.world_map_units      = {};
   $scope.world_map_topography = {};
 
-  $scope.world_width  = 10;
-  $scope.world_height = 10;
+  $scope.world_width  = 64;
+  $scope.world_height = 28;
 
   // returns [top_left, top_right, bottom_right, bottom_left] coordinates for bounding box
   $scope.drawable_coordinate_boundaries = function () {

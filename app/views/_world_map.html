@@ -9,7 +9,8 @@
     <ul>
       <li ng-repeat="(y, next) in most_recent_map">
         <span ng-repeat="(x, data) in next" ng-class="class_for_topography_id(data.topography)" class="tile"1>
-          ({{ x }}, {{ y }})
+          <!-- ({{ x }}, {{ y }}) -->
+          &nbsp;
         </span>
       </li>
     </ul>
